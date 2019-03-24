@@ -9,15 +9,15 @@ public class FindSubset {
 
         boolean isContained;
 
-        for (int i = 0; i < array2.length; i++) {
+        for (int item : array2) {
             isContained = false;
             for (int j = 0; j < array1.length; j++) {
-                if (array2[i] == array1[j]) {
+                if (item == array1[j]) {
                     isContained = true;
                     break;
                 }
             }
-            if(!isContained){
+            if (!isContained) {
                 return false;
             }
         }
