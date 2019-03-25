@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class FindSubset {
 
     /*
@@ -6,14 +10,14 @@ public class FindSubset {
     Both the arrays are not in sorted order. It may be assumed that elements in both array are distinct.
     Time Complexity: O(m*n)
     */
-    public boolean findSubsetSimple(int[] array1, int[] array2) {
+    public boolean findSubset(int[] array1, int[] array2, int m, int n) {
 
         boolean isContained;
 
-        for (int item : array2) {
+        for (int i = 0; i < n; i++) {
             isContained = false;
-            for (int j = 0; j < array1.length; j++) {
-                if (item == array1[j]) {
+            for (int j = 0; j < m; j++) {
+                if (array2[i] == array1[j]) {
                     isContained = true;
                     break;
                 }
@@ -23,5 +27,34 @@ public class FindSubset {
             }
         }
         return true;
+    }
+
+//     O(mLogm + nLogm)
+    public boolean findSubsetBetter(int[] array1, int[] array2, int m, int n) {
+       //quickSort algorithm
+        Arrays.sort(array1);
+
+        for(int item : array2){
+            if(binarySearch(array1, 0, array1.length, item) == -1){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    int binarySearch(int[] a, int min, int max, int target) {
+        if (max >= min) {
+            int mid = (min + max) / 2;
+
+            if ((mid == 0 || target > a[mid - 1]) && (a[mid] == target))
+                return mid;
+            else if (target > a[mid]) {
+                return binarySearch(a, (mid + 1), max, target);
+            } else {
+                return binarySearch(a, min, (mid - 1), target);
+            }
+        }
+        return -1;
     }
 }

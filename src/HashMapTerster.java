@@ -6,6 +6,7 @@ public class HashMapTerster {
         int arr1[] = {10, 5, 2, 23, 19};
         int arr2[] = {19, 5, 3};
         FindSubset set = new FindSubset();
-        System.out.println(set.findSubsetSimple(arr1, arr2) ? SUBSET : NO_SUBSET );
+        //System.out.println(set.findSubset(arr1, arr2, arr1.length, arr2.length) ? SUBSET : NO_SUBSET );
+        System.out.println(set.findSubsetBetter(arr1, arr2, arr1.length, arr2.length) ? SUBSET : NO_SUBSET );
     }
 }
